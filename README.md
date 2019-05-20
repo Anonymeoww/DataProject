@@ -23,7 +23,7 @@ My website will have an interactive datavisualization that analyzes audio featur
 ### Prerequisites
 * The song data will come from [data.world](https://data.world/kcmillersean/billboard-hot-100-1958-2017). 
 * The data on the audio features can be retrieved using the [Spotify API](https://developer.spotify.com/documentation/web-api/). 
-* However, I will probably use the [Spotipy])(https://spotipy.readthedocs.io/en/latest/) library.
+* However, I will probably use the [Spotipy](https://spotipy.readthedocs.io/en/latest/) library.
 * The visualizations will be made using JavaScript's D3 libraby and the D3-tip.
 
 ### Related projects
