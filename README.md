@@ -29,7 +29,7 @@ My website will have an interactive data visualization that analyzes audio featu
 This will be shown when visiting the page:
 ![Image1 cannot be displayed](https://github.com/Anonymeoww/DataProject/blob/master/doc/firstlook.PNG "On first opening") <br> <br>
 This will be shown when clicking a bubble:
-![Image2 cannot be displayed](doc/secondlook.png?raw=true "On clicking a bubble") <br><br>
+![Image2 cannot be displayed](https://github.com/Anonymeoww/DataProject/blob/master/doc/secondlook.PNG "On clicking a bubble") <br><br>
 The Bar Chart will show all songs for the selected artist, but the Radar Chart will stay the same.
 
 ### Prerequisites
