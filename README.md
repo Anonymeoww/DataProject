@@ -28,9 +28,9 @@ My website will have an interactive data visualization that analyzes audio featu
 ### Design sketch
 I based my sketch on dummy data. So the 10 bubbles in the sketch should be 100 bubbles for 100 songs. <br>
 This will be shown when visiting the page:
-![Image1 cannot be displayed](doc/firstlook.png "On first opening") <br> <br>
+![Image1 cannot be displayed](https://github.com/Anonymeoww/DataProject/blob/master/doc/firstlook.PNG "On first opening") <br> <br>
 This will be shown when clicking a bubble:
-![Image2 cannot be displayed](doc/secondlook.png "On clicking a bubble") <br><br>
+![Image2 cannot be displayed](https://github.com/Anonymeoww/DataProject/blob/master/doc/secondlook.PNG "On clicking a bubble") <br><br>
 The Bar Chart will show all songs for the selected artist, but the Radar Chart will stay the same.
 
 ### Prerequisites
