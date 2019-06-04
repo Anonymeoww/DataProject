@@ -22,7 +22,6 @@ My website will have an interactive data visualization that analyzes audio featu
 
 ### Main features (optional)
 * Changing the variables on the axes of the Bubble Chart (danceability, speechiness, loudness, acousticness and many others).
-* Functionality to compare two artists (show two bar charts).
 * Animating the Bubble Chart to show the development over time when clicking a 'Play' button. <br> <br>
 
 ### Design sketch
@@ -31,7 +30,7 @@ This will be shown when visiting the page:
 ![Image1 cannot be displayed](https://github.com/Anonymeoww/DataProject/blob/master/doc/firstlook2.PNG "On first opening") <br> <br>
 This will be shown when clicking a bubble:
 ![Image2 cannot be displayed](https://github.com/Anonymeoww/DataProject/blob/master/doc/secondlook.PNG "On clicking a bubble") <br><br>
-The Bar Chart will show all songs for the selected artist, but the Radar Chart will stay the same.
+The Line Graph will show all songs for the selected artist, but the Radar Chart will stay the same.
 
 ### Prerequisites
 * The song data will come from [data.world](https://data.world/kcmillersean/billboard-hot-100-1958-2017). The available data contains weekly charts from 1958 to 2017. While preprocessing, my goal is to create two datasets. <br>
