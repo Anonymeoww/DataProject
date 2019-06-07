@@ -5,14 +5,12 @@ The original [dataset](https://data.world/kcmillersean/billboard-hot-100-1958-20
 
 The Alt Version of dataset should as well be cleaned using a Pandas dataframe, to remove unwanted columns. It will be used for bubble chart and radio chart. All songs per year should be unique.
 * Year 2018
-  * Genre Pop
-  * Genre Rock
-    * Artist Muse
-    * Artist Imagine Dragons
-      * Song A
-      * Song B
-        * audio_feature1
-        * audio_feature2
+  * Artist Muse
+  * Artist Imagine Dragons
+    * Song A
+    * Song B
+      * audio_feature1
+      * audio_feature2
 * Year 2017...
 
 The audio features need to be retrieved using [Python's Spotipy library](https://spotipy.readthedocs.io/en/latest/) (that is connected to the [Spotify Web API](https://developer.spotify.com/documentation/web-api/)). The `audio_features` method takes an array of max 50 song-uri's, and returns an array of objects. Every object is one song with all the audio_features. These have to be added to the existing JSON file.
