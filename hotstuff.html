@@ -8,15 +8,29 @@ Student number:   12523186
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="hotstuff.css">
     <title>D3 Hot Stuff</title>
+
          <!-- Import D3 V5 -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+      d3v5 = d3;
+      window.d3 = null;
+    </script>
+          <!-- Import D3 V3 and RadarChart -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="radarchart.js"></script>
+    <script>
+      d3v3 = d3;
+      window.d3 = null;
+    </script>
+
     <script src="hotstuff.js"></script>
+    <script src="d3-tip.js"></script>
   </head>
   <body>
     <div class="grid-container" style="position: relative; width: 1200px; height: 550px;">
-        <div class="scatter">1</div>
+        <div class="scatter"></div>
         <div class="line">2</div>
-        <div class="radar">3</div>
+        <div class="radar"></div>
     </div>
   </body>
   <footer>This project is made by Dilisha C. Jethoe (12523186)</footer>

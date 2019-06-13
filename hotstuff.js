@@ -1,43 +1,44 @@
-d3.json("hotstuff.json").then(function(all_data) {
-    console.log(all_data)
-    data = all_data["2018"];
-    create_bubbless()
+d3v5.json("hotstuff.json").then(function(all_data) {
+    var correct_data = select_data(all_data,2018);
+    create_bubbless(correct_data);
+    create_radar(correct_data, 0)
 });
 
-function select_data(){
-    
+function select_data(dataset, t){
+    var data_array = [];
+    Object.keys(dataset[t]).forEach(function (list_element) {
+        data_array.push(dataset[t][list_element])
+    });
+    return data_array
 }
 
-function create_bubbless(){
-    var margin = {top: 20, right: 50, bottom: 100, left: 100};
-    var svg = d3.select(".scatter");
-    w = svg.attr('width') - margin.left - margin.right;
-    h = svg.attr('height') - margin.top - margin.bottom;
-}
-
-function create_bubbles() {
+function create_bubbless(dataset){
+    var margin = {top: 50, right: 50, bottom: 50, left: 50};
+    var w = 595 - margin.left - margin.right;
+    var h = 550 - margin.top - margin.bottom;
 
     // Setup axes
-    var xScale = d3.scaleLinear()
-        .domain([0, 100000])
+    var xScale = d3v5.scaleLinear()
+        .domain([0, 1])
         .range([0, w]);
 
-    var yScale = d3.scaleLinear()
-        .domain([0, 35])
+    var yScale = d3v5.scaleLinear()
+        .domain([0, 1])
         .range([h, 0]);
 
-    var xAxis = d3.axisBottom(xScale);
-    var yAxis = d3.axisLeft(yScale);
+    var xAxis = d3v5.axisBottom(xScale);
+    var yAxis = d3v5.axisLeft(yScale);
 
     // add the graph canvas to the body of the webpage
-    var svg = d3.select("body").select(".scatter")
-                               .attr("width", w + margin.left + margin.right)
-                               .attr("height", h + margin.top + margin.bottom)
-                               .append("g")
-                               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var svg = d3v5.select(".scatter").append("svg")
+                .attr("id", "scatter")
+                .attr("width", w + margin.left + margin.right)
+                .attr("height", h + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    // add the tooltip area to the webpage
-	var tooltip = d3.select("body").append("div")
+    // add the tooltip area to the div
+	var tooltip = d3v5.select(".scatter").append("div")
 		.attr("class", "tooltip")
 		.style("opacity", 0);
 
@@ -50,7 +51,7 @@ function create_bubbles() {
                    .attr("x", w)
                    .attr("y", -6)
                    .style("text-anchor", "end")
-                   .text('GDP');
+                   .text('Danceability');
 
     // y-axis
     svg.append("g").attr("class", "y axis")
@@ -61,66 +62,63 @@ function create_bubbles() {
                    .attr("y", 6)
                    .attr("dy", ".71em")
                    .style("text-anchor", "end")
-                   .text('teenViolence');
+                   .text('Loudness');
 
     // labels
-
     svg.append("text").attr("x", (w/2))
-                    .attr("y", (20))
+                    .attr("y", (0))
                     .attr("text-anchor", "middle")
                     .attr("font-weight", "bold")
-                    .style("font-size", "16px")
-                    .style("font-family", "Arial")
-                    .text("Teens living in violent areas vs. GDP");
+                    .text("Bubble chart");
 
     svg.append("text").attr("x", (w/2))
-                    .attr("y", (h + 50))
+                    .attr("y", (h + 30))
                     .attr("text-anchor", "middle")
-                    .style("font-size", "12px")
-                    .style("font-family", "Arial")
-                    .text("GDP");
+                    .text("Energy");
 
-    svg.append("text").attr("x", (w-145))
-                    .attr("y", 30)
-                    .attr("text-anchor", "middle")
-                    .style("font-size", "14px")
-                    .style("font-family", "Arial")
-                    .text("Legend");
+    // svg.append("text").attr("x", (w-145))
+    //                 .attr("y", 30)
+    //                 .attr("text-anchor", "middle")
+    //                 .style("font-size", "14px")
+    //                 .style("font-family", "Arial")
+    //                 .text("Legend");
 
     svg.append("text").attr("x", -200)
-                    .attr("y", -50)
+                    .attr("y", -30)
                     .attr("text-anchor", "middle")
                     .attr('transform', 'rotate(-90)')
-                    .style("font-size", "12px")
-                    .style("font-family", "Arial")
-                    .text("Children (0-17) living in areas with problems with crime or violence (%)");
+                    .text("Danceability");
 
     // draw dots
-    svg.selectAll(".dot").data(dataset[t])
-                        .enter().append("circle")
-                          .attr("class", "dot")
-                          .attr("r", 7)
-                          .attr("cx", d => xScale(d["GDP"]))
-                          .attr("cy", e => yScale(e["teenVio"]))
-                          .style("fill",  function(f){
-                                if (f["teenPreg"] > 2.0 && f["teenPreg"] < 16.4){ return "#fde0dd"}
-                                if (f["teenPreg"]> 16.4 && f["teenPreg"] < 29.5){ return "#fa9fb5"}
-                                if (f["teenPreg"] > 29.5){ return "#c51b8a" }
-         })
-                          .on("mouseover", function(d) {
-                              tooltip.transition()
-                                   .duration(200)
-                                   .style("opacity", .9);
-                              tooltip.html("Country: " + d["Country"] + "<br> Teen Pregnancy Rate: " + d["teenPreg"])
-                                   .style("left", (d3.event.pageX + 10) + "px")
-                                   .style("top", (d3.event.pageY - 28) + "px");
-                          })
-                          .on("mouseout", function(d) {
-                              tooltip.transition()
-                                   .duration(500)
-                                   .style("opacity", 0);
-                          });
+    svg.selectAll(".dot").data(dataset)
+                    .enter().append("circle")
+                      .attr("class", "dot")
+                      .attr("cy", function (d, i){
+                          return yScale(d["AF"][0]["danceability"])
+                      })
+                      .attr("r", 3)
+                      .attr("cx", function (d, i){
+                          return xScale(d["AF"][0]["energy"])
+                      })
+                      .style("fill", "#c51b8a")
+                      .on('click', function (d) {
+                          console.log(d["Title"]);
+                          var title = d["Title"];
+                          click_circle(dataset, title)
+                      });
 
+    // Tooltip
+    var tip = d3v5.tip()
+        .attr('class', 'd3-tip')
+        .offset([50, 0])
+        .html(function (d) {
+            return "<strong>Title:</strong><span>" + d['Title'] + "</span>"
+        });
+    svg.call(tip);
+
+}
+
+function create_bubbles() {
     var max = getMax(dataset["2012"], "teenPreg");
     console.log(max);
 
@@ -158,8 +156,12 @@ function create_bubbles() {
     svg.call(tip);
 }
 
-function click_circle() {
-
+function click_circle(dataset, title) {
+    for (var i = 0; i < dataset.length; i++) {
+        if (dataset[i]["Title"] == title){
+            create_radar(dataset, i)
+        }
+    }
 }
 
 function change_year() {
@@ -174,6 +176,43 @@ function create_lines() {
 
 }
 
-function create_radio() {
+function create_radar(year_data, index) {
 
+    console.log(year_data);
+
+    var dataset = year_data[index]["AF"][0];
+    var axes = ["acousticness", "danceability", "energy", "liveness", "valence"];
+    var datas = [];
+    var data = [];
+    axes.forEach(function (add){
+        var radar_obj = {};
+        radar_obj["axis"] = add;
+        radar_obj["value"] = dataset[add];
+        data.push(radar_obj);
+    });
+    datas.push(data);
+
+    var margin = {top: 50, right: 50, bottom: 50, left: 50};
+    var width = 550 - margin.left - margin.right;
+    var height = 400 - margin.top - margin.bottom;
+
+    var color = d3v5.scaleOrdinal().range(["#c51b8a","#CC333F","#00A0B0"]);
+
+    d3v5.select(".radar").append("svg")
+                       .attr("id", "radar")
+                       .attr("width", width + margin.left + margin.right)
+                       .attr("height", height + margin.top + margin.bottom)
+                       .append("g")
+                       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var radarChartOptions = {
+    w: width,
+    h: height,
+    margin: margin,
+    maxValue: 1,
+    levels: 5,
+    roundStrokes: true,
+    color: color
+    };
+    RadarChart("#radar", datas, radarChartOptions);
 }
