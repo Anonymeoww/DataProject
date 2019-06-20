@@ -24,12 +24,17 @@ Student number:   12523186
     </script>
 
     <script src="hotstuff.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
     <script src="d3-tip.js"></script>
   </head>
   <body>
-    <div class="grid-container" style="position: relative; width: 1200px; height: 550px;">
+    <div class="slidecontainer">
+      <input type="range" min="1958" max="2018" value="2000" class="slider" id="myRange">
+      <p>Year: <span id="demo"></span></p>
+    </div>
+    <div class="grid-container" style="position: relative; width: 1200px; height: 1000px;">
         <div class="scatter"></div>
-        <div class="line">2</div>
+        <div class="line"></div>
         <div class="radar"></div>
     </div>
   </body>
