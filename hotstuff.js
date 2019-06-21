@@ -67,6 +67,12 @@ function click_circle(dataset, title) {
 }
 
 function create_bubbless(dataset){
+
+    var checkbox = d3v5.select("#controls").append("input")
+        .attr("id", "checkRap")
+        .attr("type", "checkbox")
+        .attr("checked", "true");
+
     var margin = {top: 50, right: 50, bottom: 50, left: 50};
     var w = 1200 - margin.left - margin.right;
     var h = 550 - margin.top - margin.bottom;
@@ -144,6 +150,9 @@ function create_bubbless(dataset){
                     .text("Danceability");
 
     // draw dots
+    var rap = /rap/;
+    var rock = /rock/;
+    var pop = /pop/;
     svg.selectAll(".dot").data(dataset)
                     .enter().append("circle")
                       .attr("class", "dot")
@@ -154,13 +163,29 @@ function create_bubbless(dataset){
                       .attr("cx", function (d, i){
                           return xScale(d["AF"][0]["energy"])
                       })
-                      .style("fill", "#c51b8a")
+                      .attr("id", function (f){
+                          if (rap.test(f["Genres"])){
+                              return "rap"
+                          }
+                          else {return "not-rap"}
+                      })
+                      .style("fill", function (color){
+                          if (rap.test(color["Genres"])){
+                              return "#ffffff"
+                          }
+                          else if (rock.test(color["Genres"])){
+                              return "#b2b2ff"
+                          }
+                          else if (pop.test(color["Genres"])){
+                              return "#89023E"
+                          }
+                          else {return "#000000"}
+                      })
                       .on('click', function (d) {
                             var svgR = d3v5.select(".radar");
                             svgR.selectAll("*").remove();
                             var svgL = d3v5.select(".line");
                             svgL.selectAll("*").remove();
-                            console.log(d["Artist"]);
                             var title = d["Title"];
                             click_circle(dataset, title);
                       });
@@ -173,6 +198,8 @@ function create_bubbless(dataset){
             return "<strong>Title:</strong><span>" + d['Title'] + "</span>"
         });
     svg.call(tip);
+
+    document.getElementById("checkRap").addEventListener("click", select_genre);
 }
 
 function create_bubbles() {
@@ -218,7 +245,18 @@ function change_year() {
 }
 
 function select_genre() {
-
+    svg = d3v5.select("#scatter");
+    // Bind function to onclick event for checkbox
+    document.getElementById('checkRap').onclick = function() {
+        // access properties using this keyword
+        if ( this.checked ) {
+            // Returns true if checked
+            svg.selectAll("#rap").style("opacity", "1")
+        } else {
+            // Returns false if not checked
+            svg.selectAll("#rap").style("opacity", "0")
+            }
+    };
 }
 
 function create_lines(dataset) {
@@ -312,14 +350,12 @@ function create_lines(dataset) {
             .style("cursor", "none");
         });
 
-
     /* Add circles in the line */
-    console.log(data);
 
     var filtered = data[0]["values"].filter(function(value, index, arr){
         return value["pos"] > 0;
     });
-    console.log(filtered);
+
     lines.selectAll("circle-group")
       .data(data).enter()
       .append("g")
@@ -346,7 +382,7 @@ function create_lines(dataset) {
         })
       .append("circle")
       .attr("cx", function(d) {
-          if (d.week > 0){return xScale(d.week)}
+          return xScale(d.week)
       })
       .attr("cy", d => yScale(d.pos))
       .attr("r", circleRadius)
@@ -381,6 +417,7 @@ function create_lines(dataset) {
       .attr("transform", "rotate(-90)")
       .attr("fill", "#000")
       .text("Total values");
+
 }
 
 function create_radar(year_data, index_list) {
