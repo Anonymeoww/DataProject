@@ -1,9 +1,14 @@
+var json1 = 0;
+var json2 = 0;
+var current_year = 2018;
+
 Promise.all([d3v5.json("hotstuffwgenres.json"), d3v5.json("positions.json")]).then(function(all_data) {
-    var correct_data = select_data(all_data[0],2018);
-    var correct_data2 = all_data[1];
-    console.log(correct_data2);
+    json1 = all_data[0];
+    json2 = all_data[1];
+    var correct_data = select_data(json1, current_year);
+    var correct_data2 = select_artist(json2, current_year, Object.keys(json2[current_year])[0]);
     create_bubbless(correct_data);
-    create_radar(correct_data, 0);
+    create_radar(correct_data, [0]);
     create_lines(correct_data2);
 
     var slider = document.getElementById("myRange");
@@ -12,14 +17,22 @@ Promise.all([d3v5.json("hotstuffwgenres.json"), d3v5.json("positions.json")]).th
 
     // Update the current slider value (each time you drag the slider handle)
     slider.oninput = function() {
-        output.innerHTML = this.value;
+        current_year = this.value;
+
+        output.innerHTML = current_year;
         var svgSC = d3v5.select(".scatter");
         svgSC.selectAll("*").remove();
         var svgR = d3v5.select(".radar");
         svgR.selectAll("*").remove();
-        var correct_data = select_data(all_data[0], this.value);
+        var svgL = d3v5.select(".line");
+        svgL.selectAll("*").remove();
+
+        correct_data = select_data(json1, current_year);
+        correct_data2 = select_artist(json2, current_year, Object.keys(json2[current_year])[0]);
+
         create_bubbless(correct_data);
-        create_radar(correct_data, 0);
+        create_radar(correct_data, [0]);
+        create_lines(correct_data2)
     }
 });
 
@@ -32,9 +45,30 @@ function select_data(dataset, t){
     return data_array
 }
 
+function select_artist(dataset, year, artist){
+    return dataset[year][artist];
+}
+
+function click_circle(dataset, title) {
+    var artist = "";
+    for (var i = 0; i < dataset.length; i++) {
+        if (dataset[i]["Title"] == title){
+            artist = dataset[i]["Artist"];
+        }
+    }
+    var index_list = [];
+    dataset.forEach(function (search, i){
+        if (dataset[i]["Artist"] == artist){
+            index_list.push(i)
+        }
+    });
+    create_radar(dataset, index_list);
+    create_lines(select_artist(json2, current_year, artist))
+}
+
 function create_bubbless(dataset){
     var margin = {top: 50, right: 50, bottom: 50, left: 50};
-    var w = 595 - margin.left - margin.right;
+    var w = 1200 - margin.left - margin.right;
     var h = 550 - margin.top - margin.bottom;
 
     // Setup axes
@@ -122,9 +156,13 @@ function create_bubbless(dataset){
                       })
                       .style("fill", "#c51b8a")
                       .on('click', function (d) {
-                          console.log(d["Title"]);
-                          var title = d["Title"];
-                          click_circle(dataset, title)
+                            var svgR = d3v5.select(".radar");
+                            svgR.selectAll("*").remove();
+                            var svgL = d3v5.select(".line");
+                            svgL.selectAll("*").remove();
+                            console.log(d["Artist"]);
+                            var title = d["Title"];
+                            click_circle(dataset, title);
                       });
 
     // Tooltip
@@ -135,7 +173,6 @@ function create_bubbless(dataset){
             return "<strong>Title:</strong><span>" + d['Title'] + "</span>"
         });
     svg.call(tip);
-
 }
 
 function create_bubbles() {
@@ -176,14 +213,6 @@ function create_bubbles() {
     svg.call(tip);
 }
 
-function click_circle(dataset, title) {
-    for (var i = 0; i < dataset.length; i++) {
-        if (dataset[i]["Title"] == title){
-            create_radar(dataset, i)
-        }
-    }
-}
-
 function change_year() {
 
 }
@@ -193,8 +222,10 @@ function select_genre() {
 }
 
 function create_lines(dataset) {
-    console.log(dataset[2018]["Ariana Grande"]);
-    var data = dataset[2018]["Ariana Grande"];
+    var svgL = d3v5.select(".multiline");
+    svgL.selectAll("*").remove();
+
+    var data = dataset;
 
     var width = 500;
     var height = 250;
@@ -218,13 +249,14 @@ function create_lines(dataset) {
       .range([0, width-margin]);
 
     var yScale = d3v5.scaleLinear()
-      .domain([0, 100])
+      .domain([100, 0])
       .range([height-margin, 0]);
 
     var color = d3v5.scaleOrdinal(d3v5.schemeCategory10);
 
     /* Add SVG */
-    var svg = d3v5.select(".line").append("svg")
+    var svg = d3v5.select(".multiline").append("svg")
+      .attr("id", "line")
       .attr("width", (width+margin)+"px")
       .attr("height", (height+margin)+"px")
       .append('g')
@@ -282,6 +314,12 @@ function create_lines(dataset) {
 
 
     /* Add circles in the line */
+    console.log(data);
+
+    var filtered = data[0]["values"].filter(function(value, index, arr){
+        return value["pos"] > 0;
+    });
+    console.log(filtered);
     lines.selectAll("circle-group")
       .data(data).enter()
       .append("g")
@@ -295,8 +333,8 @@ function create_lines(dataset) {
             .style("cursor", "pointer")
             .append("text")
             .attr("class", "text")
-            .text(`${d.price}`)
-            .attr("x", d => xScale(d["week"]) + 5)
+            .text(`${d.pos}`)
+            .attr("x", d => xScale(d.week) + 5)
             .attr("y", d => yScale(d.pos) - 10);
         })
       .on("mouseout", function(d) {
@@ -307,7 +345,9 @@ function create_lines(dataset) {
             .selectAll(".text").remove();
         })
       .append("circle")
-      .attr("cx", function(d) { console.log(typeof(d.pos)); xScale(d["week"])})
+      .attr("cx", function(d) {
+          if (d.week > 0){return xScale(d.week)}
+      })
       .attr("cy", d => yScale(d.pos))
       .attr("r", circleRadius)
       .style('opacity', circleOpacity)
@@ -323,7 +363,6 @@ function create_lines(dataset) {
               .duration(duration)
               .attr("r", circleRadius);
           });
-
 
     /* Add Axis into SVG */
     var xAxis = d3v5.axisBottom(xScale).ticks(5);
@@ -344,18 +383,20 @@ function create_lines(dataset) {
       .text("Total values");
 }
 
-function create_radar(year_data, index) {
-    var dataset = year_data[index]["AF"][0];
-    var axes = ["acousticness", "danceability", "energy", "liveness", "valence"];
+function create_radar(year_data, index_list) {
     var datas = [];
-    var data = [];
-    axes.forEach(function (add){
-        var radar_obj = {};
-        radar_obj["axis"] = add;
-        radar_obj["value"] = dataset[add];
-        data.push(radar_obj);
+    index_list.forEach(function (index) {
+        var data = [];
+        var dataset = year_data[index]["AF"][0];
+        var axes = ["acousticness", "danceability", "energy", "liveness", "valence"];
+        axes.forEach(function (add){
+            var radar_obj = {};
+            radar_obj["axis"] = add;
+            radar_obj["value"] = dataset[add];
+            data.push(radar_obj);
+        });
+        datas.push(data);
     });
-    datas.push(data);
 
     var margin = {top: 50, right: 50, bottom: 50, left: 50};
     var width = 550 - margin.left - margin.right;

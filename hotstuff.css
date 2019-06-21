@@ -1,3 +1,15 @@
+.multiline {
+    background-color: aquamarine;
+}
+
+.radar {
+    background-color: aqua;
+}
+
+.scatter{
+    background-color: #faa8ff;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto;
@@ -10,7 +22,7 @@
 }
 
 .scatter {
-  grid-row: 1 / span 2;
+  grid-column: 1 / span 2;
 }
 
 svg {
