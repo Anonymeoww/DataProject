@@ -21,8 +21,8 @@ function drawBubbleChart() {
             output.innerHTML = current_year;
             correct_data = select_data(all_data, current_year);
             createBubbles.updateBubbles(correct_data);
-            // drawMultiLine.updateLines(current_year, "first")
-            drawRadarChart.updateRadar(current_year, [0])
+            updateLines(current_year, "first");
+            updateRadar(current_year, [0] )
         }
     });
 
