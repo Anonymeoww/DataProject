@@ -1,7 +1,16 @@
 ## Process Book
 
+### Week 4 - Day 4 (June 20)
+The multiline graph works now, with static data. I don't understand why the whole graph seems to have little opacity,
+but I'm first focusing on making sure it is linked with the bubble chart. New things on the planning include changing the
+position of the graphs and adding explanatory texts.
+
+### Week 4 - Day 3 (June 19)
+I had much difficulty in understanding the working of the multiline graph example I found. But I got that working in a separate
+file now, with fake data.
+
 ### Week 2 - Day 4 (June 13)
-The bubble chart now has a connection with the radar chart. When you click a bubble, the radar chart updates. I did change my mind on the radar chart, I want it to show all songs of one artist that have been in the Hot 100 in the selected year. It works now with one song, so I need to add more data to fix this. 
+The bubble chart now has a connection with the radar chart. When you click a bubble, the radar chart updates. I did change my mind on the radar chart, I want it to show all songs of one artist that have been in the Hot 100 in the selected year. It works now with one song, so I need to add more data to fix this.
 
 ### Week 2 - Day 3 (June 12)
 Today I made a lot of progress. I managed to create a radar chart of one song with increased opacity on hovering over the area. I found a [library](http://bl.ocks.org/nbremer/raw/21746a9668ffdf6d8242/radarChart.js) online to accomplish this. I had some difficulty with implementing the extra code, because I needed to include both `d3v3` and `d3v5` to make this work.

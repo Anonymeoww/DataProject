@@ -24,7 +24,10 @@ Student number:   12523186
     </script>
 
     <script src="bubblechart.js"></script>
-    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="multiline.js"></script>
+    <script src="radar.js"></script>
+
+<!--    <script src="https://d3js.org/d3-time.v1.min.js"></script>-->
     <script src="d3-tip.js"></script>
   </head>
   <body>
@@ -33,7 +36,9 @@ Student number:   12523186
       <p>Year: <span id="demo"></span></p>
     </div>
     <div class="grid-container" style="position: relative; width: 1000px; height: 700px;">
-        <label id="controls"></label>
+        <div class="boxes">
+            <input type="checkbox" id="checkRap" checked/> <label for="checkRap">Rap</label>
+        </div>
         <div class="scatter"></div>
         <div class="multiline"></div>
         <div class="radar"></div>
