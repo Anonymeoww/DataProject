@@ -45,6 +45,8 @@ function drawMultiLine(current_year){
           .attr("id", "line")
           .attr("width", (width+margin)+"px")
           .attr("height", (height+margin)+"px")
+          //          .attr("preserveAspectRatio", "xMinYMin meet")
+          //   .attr("viewBox", "0 0 960 500")
           .append('g')
           .attr("transform", `translate(${margin}, ${margin})`);
 
@@ -178,8 +180,8 @@ function updateLines(current_year, artist) {
     else{
         dataUpdateLines = this.full_data[current_year][artist]
     }
-    console.log("Print data van updateLines:");
-    console.log(dataUpdateLines);
+    // console.log("Print data van updateLines:");
+    // console.log(dataUpdateLines);
 
     var width = 500;
     var height = 250;
@@ -213,6 +215,8 @@ function updateLines(current_year, artist) {
       .attr("id", "line")
       .attr("width", (width+margin)+"px")
       .attr("height", (height+margin)+"px")
+      //               .attr("preserveAspectRatio", "xMinYMin meet")
+      //       .attr("viewBox", "0 0 960 500")
       .append('g')
       .attr("transform", `translate(${margin}, ${margin})`);
 

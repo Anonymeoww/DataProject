@@ -22,6 +22,8 @@ function drawRadarChart() {
             .attr("id", "radar")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
+            //        .attr("preserveAspectRatio", "xMinYMin meet")
+            // .attr("viewBox", "0 0 960 500")
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -51,7 +53,6 @@ function drawRadarChart() {
 
         RadarChart("#radar", datas, radarChartOptions);
 
-        createRadar.updateRadar = updateRadar;
     }
 }
 
@@ -81,6 +82,8 @@ function updateRadar(current_year, index_list) {
         .attr("id", "radar")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
+        //             .attr("preserveAspectRatio", "xMinYMin meet")
+        //     .attr("viewBox", "0 0 960 500")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

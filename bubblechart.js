@@ -51,6 +51,8 @@ function drawBubbleChart() {
             .attr("id", "scatter")
             .attr("width", w + margin.left + margin.right)
             .attr("height", h + margin.top + margin.bottom)
+            // .attr("preserveAspectRatio", "xMinYMin meet")
+            // .attr("viewBox", "0 0 1500 550")
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -123,9 +125,17 @@ function drawBubbleChart() {
             })
             .attr("id", function (f) {
                 if (rap.test(f["Genres"])) {
+                    // console.log("rap");
                     return "rap"
+                } else if (rock.test(f["Genres"])) {
+                    // console.log("rock");
+                    return "rock"
+                } else if (pop.test(f["Genres"])) {
+                        // console.log("pop");
+                        return "pop"
                 } else {
-                    return "not-rap"
+                    console.log("other");
+                    return "other"
                 }
             })
             .style("fill", function (color) {
@@ -145,6 +155,7 @@ function drawBubbleChart() {
             });
 
         document.getElementById("checkRap").addEventListener("click", select_genre);
+        document.getElementById("checkRock").addEventListener("click", select_genre);
 
         function updateBubbles(dataset) {
             var rap = /rap/;
@@ -173,6 +184,21 @@ function drawBubbleChart() {
                     return yScale(d["AF"][0]["danceability"]);  // Circle's Y
                 })
                 .attr("r", 5)
+                .attr("id", function (f) {
+                    if (rap.test(f["Genres"])) {
+                        console.log("rap");
+                        return "rap"
+                    } else if (rock.test(f["Genres"])) {
+                        console.log("rock");
+                        return "rock"
+                    } else if (pop.test(f["Genres"])) {
+                        console.log("pop");
+                        return "pop"
+                    } else {
+                        console.log("other");
+                        return "other"
+                    }
+                })
                 .style("fill", function (color) {
                     if (rap.test(color["Genres"])) {
                         return "#ffffff"
@@ -237,6 +263,18 @@ function drawBubbleChart() {
             else {
                 // Returns false if not checked
                 svg.selectAll("#rap").style("opacity", "0")
+            }
+        };
+
+        document.getElementById('checkRock').onclick = function() {
+            // access properties using this keyword
+            if ( this.checked ) {
+                // Returns true if checked
+                svg.selectAll("#rock").style("opacity", "1")
+            }
+            else {
+                // Returns false if not checked
+                svg.selectAll("#rock").style("opacity", "0")
             }
         };
     }

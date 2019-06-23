@@ -4,46 +4,151 @@ Student number:   12523186
 -->
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="hotstuff.css">
+    <!-- We need this scrollbar CSS in case the sidebar doesn't fit -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <title>D3 Hot Stuff</title>
 
-         <!-- Import D3 V5 -->
+    <!-- Import D3 V5 -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script>
-      d3v5 = d3;
-      window.d3 = null;
+        d3v5 = d3;
+        window.d3 = null;
     </script>
-          <!-- Import D3 V3 and RadarChart -->
+    <!-- Import D3 V3 and RadarChart -->
     <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src="radarchart.js"></script>
+    <script defer src="radarchart.js"></script>
     <script>
-      d3v3 = d3;
-      window.d3 = null;
+        d3v3 = d3;
+        window.d3 = null;
     </script>
 
-    <script src="bubblechart.js"></script>
-    <script src="multiline.js"></script>
-    <script src="radar.js"></script>
+    <script defer type="text/javascript" src="bubblechart.js"></script>
+    <script defer type="text/javascript" src="multiline.js"></script>
+    <script defer type="text/javascript" src="radar.js"></script>
 
-<!--    <script src="https://d3js.org/d3-time.v1.min.js"></script>-->
+    <!--    <script src="https://d3js.org/d3-time.v1.min.js"></script>-->
     <script src="d3-tip.js"></script>
-  </head>
-  <body>
-    <div class="slidecontainer">
-      <input type="range" min="1958" max="2018" value="2000" class="slider" id="myRange">
-      <p>Year: <span id="demo"></span></p>
-    </div>
-    <div class="grid-container" style="position: relative; width: 1000px; height: 700px;">
-        <div class="boxes">
-            <input type="checkbox" id="checkRap" checked/> <label for="checkRap">Rap</label>
-            <input type="checkbox" id="checkRock" checked/> <label for="checkRock">Rock</label>
+</head>
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--        <a class="navbar-brand" href="#">Billboard Hot 100 through the years [1958 to 2018]</a>-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"-->
+<!--                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
+<!--            <div class="navbar-nav">-->
+<!--                <a class="nav-item nav-link active" href="#">Charts <span class="sr-only">(current)</span></a>-->
+<!--                <a class="nav-item nav-link" href="#">Audio Features</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
+<body>
+<div class="wrapper">
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Billboard visualization</h3>
         </div>
-        <div class="scatter"></div>
-        <div class="multiline"></div>
-        <div class="radar"></div>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">Information</a>
+                <p class="collapse list-unstyled" id="homeSubmenu">Below you see a bubble chart with all songs that have
+                    been in Billboards Hot 100 in 2018. <br>
+                    Use the slider to change the year, you can go all the way back to 1958! As you can see, the chart
+                    maps the
+                    energy
+                    and danceability of the songs. <br>The color is defined by the genre. You can select genres of your
+                    choice
+                    by
+                    using
+                    the
+                    checkboxes on the side. Clicking a bubble shows a line chart with all songs of the selected artist
+                    that have
+                    peaked the charts. <br>You will also find the audio features of these songs, presented in the radar
+                    chart.
+                </p>
+            </li>
+            <hr>
+            <li>
+                <a href="#">Visualizations</a>
+                <a href="#">Audio Features</a>
+            </li>
+        </ul>
+
+    </nav>
+
+    <div id="content">
+        <div id="topbar">
+            <nav class="navbar navbar-expand-lg navbar-light containerButton">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="slidecontainer">
+                <input type="range" min="1958" max="2018" value="2000" class="slider" id="myRange">
+                <p>Year: <span id="demo"></span></p>
+            </div>
+
+            <div class="boxes">
+                <input type="checkbox" id="checkRap" checked/> <label for="checkRap">Rap</label>
+                <input type="checkbox" id="checkRock" checked/> <label for="checkRock">Rock</label>
+            </div>
+        </div>
+
+
+        <div class="grid-container">
+            <div class="scatter"></div>
+            <div class="multiline"></div>
+            <div class="radar"></div>
+            <!--            <div class="scatter2"></div>-->
+            <!--            <div class="multiline2"></div>-->
+            <!--            <div class="radar2"></div>-->
+        </div>
     </div>
-  </body>
+
+</div>
+
+
+<script defer src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script defer src="scrollbar.js"></script>
+<script defer
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script defer src="layout.js"></script>
+
+
+<!--    &lt;!&ndash; jQuery CDN - Slim version (=without AJAX) &ndash;&gt;-->
+<!--    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--    &lt;!&ndash; Popper.JS &ndash;&gt;-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>-->
+<!--    &lt;!&ndash; Bootstrap JS &ndash;&gt;-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>-->
+<!--    &lt;!&ndash; jQuery Custom Scroller CDN &ndash;&gt;-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>-->
+
+
+</body>
+
 <!--  <footer>This project is made by Dilisha C. Jethoe (12523186)</footer>-->
 </html>
