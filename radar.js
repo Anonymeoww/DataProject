@@ -60,7 +60,7 @@ function select_data(dataset, t){
     var int_t = parseInt(t, 10);
     var data_array = [];
     Object.keys(dataset[int_t]).forEach(function (list_element) {
-        data_array.push(dataset[int_t][list_element])
+        data_array.push(dataset[int_t][list_element]);
     });
     return data_array
 }

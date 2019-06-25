@@ -125,22 +125,18 @@ function drawBubbleChart() {
             })
             .attr("id", function (f) {
                 if (rap.test(f["Genres"])) {
-                    // console.log("rap");
                     return "rap"
                 } else if (rock.test(f["Genres"])) {
-                    // console.log("rock");
                     return "rock"
                 } else if (pop.test(f["Genres"])) {
-                        // console.log("pop");
                         return "pop"
                 } else {
-                    console.log("other");
                     return "other"
                 }
             })
             .style("fill", function (color) {
                 if (rap.test(color["Genres"])) {
-                    return "#ffffff"
+                    return "#BEA8A7"
                 } else if (rock.test(color["Genres"])) {
                     return "#b2b2ff"
                 } else if (pop.test(color["Genres"])) {
@@ -151,11 +147,15 @@ function drawBubbleChart() {
             })
             .on('click', function (d) {
                 var title = d["Title"];
-                click_circle(dataset, title);
+                var artist = d["Artist"];
+                click_circle(dataset, artist);
             });
 
         document.getElementById("checkRap").addEventListener("click", select_genre);
         document.getElementById("checkRock").addEventListener("click", select_genre);
+        document.getElementById("checkPop").addEventListener("click", select_genre);
+        document.getElementById("checkOther").addEventListener("click", select_genre);
+        select_genre();
 
         function updateBubbles(dataset) {
             var rap = /rap/;
@@ -186,16 +186,12 @@ function drawBubbleChart() {
                 .attr("r", 5)
                 .attr("id", function (f) {
                     if (rap.test(f["Genres"])) {
-                        console.log("rap");
                         return "rap"
                     } else if (rock.test(f["Genres"])) {
-                        console.log("rock");
                         return "rock"
                     } else if (pop.test(f["Genres"])) {
-                        console.log("pop");
                         return "pop"
                     } else {
-                        console.log("other");
                         return "other"
                     }
                 })
@@ -233,29 +229,48 @@ function drawBubbleChart() {
         return data_array
     }
 
-    function click_circle(dataset, title){
-        var artist = "";
-        for (var i = 0; i < dataset.length; i++) {
-            if (dataset[i]["Title"] == title){
-                artist = dataset[i]["Artist"];
-            }
-        }
+
+    // function click_circle(dataset, title){
+    //     console.log(title);
+    //
+    //     var artist = "";
+    //     for (var i = 0; i < dataset.length; i++) {
+    //
+    //         if (dataset[i]["Title"] == title){
+    //             artist = dataset[i]["Artist"];
+    //             console.log(dataset[i]["Artist"])
+    //             console.log(dataset[i]["Genres"])
+    //         }
+    //     }
+    //     var index_list = [];
+    //     dataset.forEach(function (search, i){
+    //         if (dataset[i]["Artist"] == artist){
+    //             index_list.push(i)
+    //         }
+    //     });
+    //     //updateRadar(current_year, index_list);
+    //     updateLines(current_year, artist)
+    // }
+
+    function click_circle(dataset, artist){
+
+        var artist = artist;
+
         var index_list = [];
         dataset.forEach(function (search, i){
             if (dataset[i]["Artist"] == artist){
                 index_list.push(i)
             }
         });
-        // create_radar(dataset, index_list);
-        // create_lines(select_artist(json2, current_year, artist))
-        drawMultiLine.updateLines(current_year, artist)
+        updateRadar(current_year, index_list);
+        updateLines(current_year, artist)
     }
-
     function select_genre() {
         svg = d3v5.select("#scatter");
         // Bind function to onclick event for checkbox
         document.getElementById('checkRap').onclick = function() {
             // access properties using this keyword
+            console.log("Checkbox function fires: " + this.checked);
             if ( this.checked ) {
                 // Returns true if checked
                 svg.selectAll("#rap").style("opacity", "1")
@@ -275,6 +290,30 @@ function drawBubbleChart() {
             else {
                 // Returns false if not checked
                 svg.selectAll("#rock").style("opacity", "0")
+            }
+        };
+
+        document.getElementById('checkPop').onclick = function() {
+            // access properties using this keyword
+            if ( this.checked ) {
+                // Returns true if checked
+                svg.selectAll("#pop").style("opacity", "1")
+            }
+            else {
+                // Returns false if not checked
+                svg.selectAll("#pop").style("opacity", "0")
+            }
+        };
+
+        document.getElementById('checkOther').onclick = function() {
+            // access properties using this keyword
+            if ( this.checked ) {
+                // Returns true if checked
+                svg.selectAll("#other").style("opacity", "1")
+            }
+            else {
+                // Returns false if not checked
+                svg.selectAll("#other").style("opacity", "0")
             }
         };
     }

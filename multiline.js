@@ -178,10 +178,11 @@ function updateLines(current_year, artist) {
         dataUpdateLines = this.full_data[current_year][Object.keys(this.full_data[current_year])[0]]
     }
     else{
-        dataUpdateLines = this.full_data[current_year][artist]
+        this.full_data.forEach(function(lookup, i){
+            if (artist in this.full_data[current_year][i]){
+                dataUpdateLines = this.full_data[current_year][this.full_data[current_year][i]];
+        }});
     }
-    // console.log("Print data van updateLines:");
-    // console.log(dataUpdateLines);
 
     var width = 500;
     var height = 250;
