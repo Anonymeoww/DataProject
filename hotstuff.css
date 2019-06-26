@@ -317,6 +317,22 @@ ul ul a {
     border-color: #fff;
 }
 
+/*Legenda color checkbox background and border checked*/
+#checkRap:checked + .checkbox__label:before {
+    background-color: rgb(178, 178, 255)!important;
+    border-color: rgb(178, 178, 255)!important;
+}
+
+/*Checkmark itself color*/
+#checkRap:checked + .checkbox__label:after {
+    border-color: #fff;
+}
+
+/*Border color*/
+#rapLabel:before {
+    border-color: rgb(178, 178, 255)!important;
+}
+
 /*On mobile only appear if clicked on*/
 @media (max-width: 768px) {
     #sidebar {
