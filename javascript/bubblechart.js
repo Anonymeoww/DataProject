@@ -22,7 +22,15 @@ function drawBubbleChart() {
             correct_data = select_data(all_data, current_year);
             createBubbles.updateBubbles(correct_data);
             updateLines(current_year, "first");
-            updateRadar(current_year, [0] )
+            updateRadar(current_year, [0] );
+
+            d3v5.select("#bubble-title").remove();
+            d3v5.select("#scatter").append("text").attr("x", (w / 2))
+            .attr("y", (0))
+            .attr("text-anchor", "middle")
+            .attr("font-weight", "bold")
+            .text("Bubble chart")
+            .attr("id", "bubble-title");
         }
     });
 
@@ -49,8 +57,6 @@ function drawBubbleChart() {
         // add the graph canvas to the body of the webpage
         var svg = d3v5.select(".scatter").append("svg")
             .attr("id", "scatter")
-            // .attr("width", w + margin.left + margin.right)
-            // .attr("height", h + margin.top + margin.bottom)
             .attr("preserveAspectRatio", "xMinYMin meet")
             .attr("viewBox", "0 0 1200 550")
             .append("g")
@@ -88,19 +94,13 @@ function drawBubbleChart() {
             .attr("y", (0))
             .attr("text-anchor", "middle")
             .attr("font-weight", "bold")
-            .text("Bubble chart");
+            .text("Bubble chart")
+            .attr("id", "bubble-title");
 
         svg.append("text").attr("x", (w / 2))
             .attr("y", (h + 30))
             .attr("text-anchor", "middle")
             .text("Energy");
-
-        // svg.append("text").attr("x", (w-145))
-        //                 .attr("y", 30)
-        //                 .attr("text-anchor", "middle")
-        //                 .style("font-size", "14px")
-        //                 .style("font-family", "Arial")
-        //                 .text("Legend");
 
         svg.append("text").attr("x", -200)
             .attr("y", -30)
@@ -146,6 +146,13 @@ function drawBubbleChart() {
                 }
             })
             .on('click', function (d) {
+                d3v5.select("#bubble-title").remove();
+                svg.append("text").attr("x", (w / 2))
+                    .attr("y", (5))
+                    .attr("text-anchor", "middle")
+                    .attr("font-weight", "bold")
+                    .text("Selected " + d["Title"] + " by " + d["Artist"])
+                    .attr("id", "bubble-title");
                 var title = d["Title"];
                 var artist = d["Artist"];
                 click_circle(dataset, title, artist);
@@ -175,7 +182,6 @@ function drawBubbleChart() {
                 .delay(function (d, i) {
                     return i / dataset.length * 500;  // Dynamic delay (i.e. each item delays a little longer)
                 })
-                //.ease("linear")  // Transition easing - default 'variable' (i.e. has acceleration),
                 .attr("class", "dot")
                 .attr("cx", function (d) {
                     return xScale(d["AF"][0]["energy"]);  // Circle's X
@@ -217,6 +223,7 @@ function drawBubbleChart() {
                         .exit().remove();
         }
 
+
         createBubbles.updateBubbles = updateBubbles;
     }
 
@@ -231,8 +238,6 @@ function drawBubbleChart() {
 
 
     function click_circle(dataset, title, artist){
-        console.log(title);
-        console.log(artist);
 
         // var artist = "";
         // for (var i = 0; i < dataset.length; i++) {
