@@ -231,8 +231,6 @@ function drawBubbleChart() {
 
 
     function click_circle(dataset, title, artist){
-        console.log(title);
-        console.log(artist);
 
         // var artist = "";
         // for (var i = 0; i < dataset.length; i++) {
@@ -241,13 +239,36 @@ function drawBubbleChart() {
         //     }
         // }
         var index_list = [];
-        dataset.forEach(function (search, i){
+        dataset.forEach(function (search, i, array){
             if (dataset[i]["Artist"] === artist){
-                index_list.push(i)
+                console.log(dataset[i]);
+                if (dataset[i]["Artist"].includes("Featuring")) {
+                    var text1 = dataset[i]["Artist"];
+                    var text2 = " Featuring";
+                    var stripped = text1.substring(0, text1.indexOf(text2));
+                    // alert(text1.substring(0, text1.indexOf(text2) + text2.length));
+                    console.log("Dit is hem stripped" + stripped);
+                    // dataset[i]["Artist"] = stripped;
+                    console.log(stripped);
+                    // var artist = stripped;
+                    artist = stripped;
+                    // var stringified = JSON.stringify(dataset[i]);
+                    dataset[i].Artist = stripped;
+                    console.log("Replace worked?" + dataset[i].Artist);
+                    // stringified = stringified.replace(`"Artist": ${artist}`,`"Artist": ${stripped}`);
+                    // console.log(stringified);
+                    // console.log("Dit is I" + i);
+                    // index_list.push(i);
+                }
+                index_list.push(i);
+
             }
         });
+        console.log("2" + artist);
+        updateLines(current_year, artist);
 
-        updateLines(current_year, artist)
+
+
     }
 
     //
