@@ -8,3 +8,7 @@
 \.idea/modules\.xml
 
 \.idea/vcs\.xml
+
+assets/__init__\.py
+
+\.idea/inspectionProfiles/Project_Default\.xml

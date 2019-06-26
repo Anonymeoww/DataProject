@@ -49,10 +49,11 @@ function RadarChart(id, data, options) {
 	d3v3.select(id).select("svg").remove();
 
 	//Initiate the radar chart SVG
-	var svg = d3v3.select(id).append("svg")
-			.attr("width",  cfg.w + cfg.margin.left + cfg.margin.right)
-			.attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
-			.attr("class", "radar"+id);
+	var svg = d3v3.select(id);
+	// .append("svg")
+	// 		.attr("width",  cfg.w + cfg.margin.left + cfg.margin.right)
+	// 		.attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
+	// 		.attr("class", "radar"+id);
 	//Append a g element
 	var g = svg.append("g")
 			.attr("transform", "translate(" + (cfg.w/2 + cfg.margin.left) + "," + (cfg.h/2 + cfg.margin.top) + ")");

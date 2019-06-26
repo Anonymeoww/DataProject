@@ -8,7 +8,7 @@ function drawBubbleChart() {
                     .attr("checked", "true");
 
     // Load data
-    d3v5.json("hotstuffwgenres.json").then(function(all_data) {
+    d3v5.json("json/hotstuffwgenres.json").then(function(all_data) {
         var correct_data = select_data(all_data, current_year);
         createBubbles(correct_data);
 
@@ -49,10 +49,10 @@ function drawBubbleChart() {
         // add the graph canvas to the body of the webpage
         var svg = d3v5.select(".scatter").append("svg")
             .attr("id", "scatter")
-            .attr("width", w + margin.left + margin.right)
-            .attr("height", h + margin.top + margin.bottom)
-            // .attr("preserveAspectRatio", "xMinYMin meet")
-            // .attr("viewBox", "0 0 1500 550")
+            // .attr("width", w + margin.left + margin.right)
+            // .attr("height", h + margin.top + margin.bottom)
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 1200 550")
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -230,41 +230,41 @@ function drawBubbleChart() {
     }
 
 
-    // function click_circle(dataset, title){
-    //     console.log(title);
-    //
-    //     var artist = "";
-    //     for (var i = 0; i < dataset.length; i++) {
-    //
-    //         if (dataset[i]["Title"] == title){
-    //             artist = dataset[i]["Artist"];
-    //             console.log(dataset[i]["Artist"])
-    //             console.log(dataset[i]["Genres"])
-    //         }
-    //     }
-    //     var index_list = [];
-    //     dataset.forEach(function (search, i){
-    //         if (dataset[i]["Artist"] == artist){
-    //             index_list.push(i)
-    //         }
-    //     });
-    //     //updateRadar(current_year, index_list);
-    //     updateLines(current_year, artist)
-    // }
+    function click_circle(dataset, title){
+        console.log(title);
 
-    function click_circle(dataset, artist){
+        var artist = "";
+        for (var i = 0; i < dataset.length; i++) {
 
-        var artist = artist;
-
+            if (dataset[i]["Title"] == title){
+                artist = dataset[i]["Artist"];
+                console.log(dataset[i]["Artist"])
+                console.log(dataset[i]["Genres"])
+            }
+        }
         var index_list = [];
         dataset.forEach(function (search, i){
             if (dataset[i]["Artist"] == artist){
                 index_list.push(i)
             }
         });
-        updateRadar(current_year, index_list);
+        //updateRadar(current_year, index_list);
         updateLines(current_year, artist)
     }
+    //
+    // function click_circle(dataset, artist){
+    //
+    //     var artist = artist;
+    //
+    //     var index_list = [];
+    //     dataset.forEach(function (search, i){
+    //         if (dataset[i]["Artist"] == artist){
+    //             index_list.push(i)
+    //         }
+    //     });
+    //     updateRadar(current_year, index_list);
+    //     updateLines(current_year, artist)
+    // }
     function select_genre() {
         svg = d3v5.select("#scatter");
         // Bind function to onclick event for checkbox
