@@ -43,8 +43,6 @@ function drawMultiLine(current_year) {
         /* Add SVG */
         var svg = d3v5.select(".multiline").append("svg")
             .attr("id", "line")
-            // .attr("width", (width+margin)+"px")
-            // .attr("height", (height+margin)+"px")
             .attr("preserveAspectRatio", "xMinYMin meet")
             .attr("viewBox", "0 0 525 300")
             .append('g')
@@ -162,7 +160,6 @@ function drawMultiLine(current_year) {
                     .duration(duration)
                     .attr("r", circleRadius);
             });
-
     }
 
     drawMultiLine.createLines = createLines;
@@ -180,14 +177,7 @@ function updateLines(current_year, artist) {
         dataUpdateLines = full_data[current_year][Object.keys(full_data[current_year])[0]]
     }
     else {
-        // full_data.forEach(function (lookup, i) {
-        //     if (artist in full_data[current_year][i]) {
-        //         dataUpdateLines = full_data[current_year][full_data[current_year][i]];
-        //     }
-        // });
-        console.log(artist);
         dataUpdateLines = full_data[current_year][artist];
-        console.log(dataUpdateLines)
     }
 
     var width = 500;
@@ -220,8 +210,6 @@ function updateLines(current_year, artist) {
     /* Add SVG */
     var svg = d3v5.select(".multiline").append("svg")
         .attr("id", "line")
-        // .attr("width", (width+margin)+"px")
-        // .attr("height", (height+margin)+"px")
         .attr("preserveAspectRatio", "xMinYMin meet")
         .attr("viewBox", "0 0 525 300")
         .append('g')
@@ -262,9 +250,10 @@ function updateLines(current_year, artist) {
                 .attr("class", "title-text")
                 .style("fill", color(i))
                 .text(d.name)
+                .style("font-size", "20px")
                 .attr("text-anchor", "middle")
                 .attr("x", (width - margin) / 2)
-                .attr("y", 5);
+                .attr("y", -15);
         })
         .on("mouseout", function (d) {
             svg.select(".title-text").remove();
