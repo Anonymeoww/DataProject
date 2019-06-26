@@ -20,6 +20,8 @@ function drawRadarChart() {
 
         d3v5.select(".radar").append("svg")
             .attr("id", "radar")
+            // .attr("width", width + margin.left + margin.right)
+            // .attr("height", height + margin.top + margin.bottom)
             .attr("preserveAspectRatio", "xMinYMin meet")
             .attr("viewBox", "0 0 550 400")
             .append("g")
@@ -78,6 +80,8 @@ function updateRadar(current_year, index_list) {
 
     d3v5.select(".radar").append("svg")
         .attr("id", "radar")
+        // .attr("width", width + margin.left + margin.right)
+        // .attr("height", height + margin.top + margin.bottom)
         .attr("preserveAspectRatio", "xMinYMin meet")
         .attr("viewBox", "0 0 550 400")
         .append("g")

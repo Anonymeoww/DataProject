@@ -1,3 +1,7 @@
+/*html {*/
+/*    padding: 50px 200px;*/
+/*}*/
+
 .af {
     padding-left: 5%;
     padding-right: 5%;
@@ -8,8 +12,18 @@ html, body {
     widt:100%;
     font-family: Roboto, "Open Sans"!important;
 }
-
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+/*.multiline {*/
+/*    background-color: aquamarine;*/
+/*}*/
+
+/*.radar {*/
+/*    background-color: aqua;*/
+/*}*/
+
+/*.scatter{*/
+/*    background-color: #faa8ff;*/
+/*}*/
 
 .grid-container {
   display: grid;
@@ -92,6 +106,7 @@ body {
     width:100%;
     display:flex;
     align-items:center;
+
 }
 
 /*Information tab*/
@@ -108,6 +123,29 @@ body {
 .scatter, .multiline, .radar {
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+
+/*p {*/
+/*    text-align: left;*/
+/*}*/
+
+/*.legend {*/
+/*    font-family: 'Raleway', sans-serif;*/
+/*    fill: #333333;*/
+/*}*/
+
+/*.tooltip {*/
+/*    fill: #333333;*/
+/*}*/
+
+/*!* Mulitiline *!*/
+/*.line {*/
+/*  stroke-width: 2;*/
+/*  fill: none;*/
+/*}*/
+
+/*.axis path {*/
+/*  stroke: black;*/
+/*}*/
 
 .wrapper {
     display: flex;
@@ -143,6 +181,8 @@ a[data-toggle="collapse"] {
     right: 20px;
     transform: translateY(-50%);
 }
+
+
 
 /*selected page*/
 .pagenow {
@@ -357,6 +397,7 @@ ul ul a {
     #sidebar.active {
         margin-left: 0;
     }
+
     .boxes {
 
         padding:5px;
@@ -366,6 +407,7 @@ ul ul a {
         font-size:12px;
     }
 }
+
 
 /*Slider CSS here we go*/
 .slidecontainer {
