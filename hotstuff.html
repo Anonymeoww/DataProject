@@ -9,6 +9,7 @@ Student number:   12523186
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="hotstuff.css">
     <!-- We need this scrollbar CSS in case the sidebar doesn't fit -->
@@ -24,18 +25,19 @@ Student number:   12523186
     </script>
     <!-- Import D3 V3 and RadarChart -->
     <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script defer src="radarchart.js"></script>
+    <script defer src="modules/radarchart.js"></script>
     <script>
         d3v3 = d3;
         window.d3 = null;
     </script>
 
-    <script defer type="text/javascript" src="bubblechart.js"></script>
-    <script defer type="text/javascript" src="multiline.js"></script>
-    <script defer type="text/javascript" src="radar.js"></script>
+    <script defer src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script defer type="text/javascript" src="javascript/bubblechart.js"></script>
+    <script defer type="text/javascript" src="javascript/multiline.js"></script>
+    <script defer type="text/javascript" src="javascript/radar.js"></script>
 
     <!--    <script src="https://d3js.org/d3-time.v1.min.js"></script>-->
-    <script src="d3-tip.js"></script>
+    <script src="modules/d3-tip.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -61,8 +63,8 @@ Student number:   12523186
             </li>
             <hr>
             <li>
-                <a href="#">Visualizations</a>
-                <a href="#">Audio Features</a>
+                <a class="pagenow" href="/DataProject/hotstuff.html">Visualizations</a>
+                <a href="/DataProject/audiofeatures.html">Audio Features</a>
             </li>
         </ul>
 
@@ -79,22 +81,39 @@ Student number:   12523186
                 </div>
             </nav>
 
-            <div class="slidecontainer">
-                <input type="range" min="1958" max="2018" value="2000" class="slider" id="myRange">
-                <p>Year: <span id="demo"></span></p>
-            </div>
+            <!--<div class="slidecontainer">-->
+                <!--<input type="range" min="1958" max="2018" value="2000" class="slider" id="myRange">-->
+                <!--<p>Year: <span id="demo"></span></p>-->
+            <!--</div>-->
+
 
             <div class="boxes">
-                <input type="checkbox" id="checkRap" checked/> <label for="checkRap">Rap</label>
-                <input type="checkbox" id="checkRock" checked/> <label for="checkRock">Rock</label>
-                <input type="checkbox" id="checkPop" checked/> <label for="checkPop">Pop</label>
-                <input type="checkbox" id="checkOther" checked/> <label for="checkOther">Other</label>
+                <div class="checkbox">
+                    <input type="checkbox" class="checkbox__input" id="checkRap" checked/> <label for="checkRap"  class="checkbox__label">Rap</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" class="checkbox__input" id="checkRock" checked/> <label for="checkRock"  class="checkbox__label">Rock</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" class="checkbox__input" id="checkPop" checked/> <label for="checkPop"  class="checkbox__label">Pop</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" class="checkbox__input" id="checkOther" checked/> <label for="checkOther"  class="checkbox__label">Other</label>
+                </div>
             </div>
+
+
+
         </div>
 
 
         <div class="grid-container">
-            <div class="scatter"></div>
+            <div class="scatter">
+                <label class="slidecontainer pure-material-slider">
+                    <input type="range"  min="1958" max="2018" value="2000" class="slider" id="myRange">
+                    <p>Year: <span id="demo"></span></p>
+                </label>
+            </div>
             <div class="multiline"></div>
             <div class="radar"></div>
             <!--            <div class="scatter2"></div>-->
@@ -109,7 +128,7 @@ Student number:   12523186
 <script defer src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-<script defer src="scrollbar.js"></script>
+<script defer src="javascript/layout/scrollbar.js"></script>
 <script defer
         src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -118,7 +137,7 @@ Student number:   12523186
 <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script defer src="layout.js"></script>
+<script defer src="javascript/layout/layout.js"></script>
 
 
 <!--    &lt;!&ndash; jQuery CDN - Slim version (=without AJAX) &ndash;&gt;-->

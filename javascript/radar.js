@@ -4,7 +4,7 @@ var radar_data = 0;
 function drawRadarChart() {
 
     // Load data
-    d3v5.json("hotstuffwgenres.json").then(function(all_data) {
+    d3v5.json("json/hotstuffwgenres.json").then(function (all_data) {
         radar_data = all_data;
         var correct_data = select_data(all_data, current_year);
         createRadar(correct_data, [0])
@@ -20,10 +20,10 @@ function drawRadarChart() {
 
         d3v5.select(".radar").append("svg")
             .attr("id", "radar")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            //        .attr("preserveAspectRatio", "xMinYMin meet")
-            // .attr("viewBox", "0 0 960 500")
+            // .attr("width", width + margin.left + margin.right)
+            // .attr("height", height + margin.top + margin.bottom)
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 550 400")
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -56,7 +56,7 @@ function drawRadarChart() {
     }
 }
 
-function select_data(dataset, t){
+function select_data(dataset, t) {
     var int_t = parseInt(t, 10);
     var data_array = [];
     Object.keys(dataset[int_t]).forEach(function (list_element) {
@@ -80,10 +80,10 @@ function updateRadar(current_year, index_list) {
 
     d3v5.select(".radar").append("svg")
         .attr("id", "radar")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        //             .attr("preserveAspectRatio", "xMinYMin meet")
-        //     .attr("viewBox", "0 0 960 500")
+        // .attr("width", width + margin.left + margin.right)
+        // .attr("height", height + margin.top + margin.bottom)
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", "0 0 550 400")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
