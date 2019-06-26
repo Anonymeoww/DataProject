@@ -12,7 +12,6 @@ function drawRadarChart() {
 
 
     function createRadar(year_data, index_list) {
-        console.log(index_list);
         var margin = {top: 50, right: 50, bottom: 50, left: 50};
         var width = 550 - margin.left - margin.right;
         var height = 400 - margin.top - margin.bottom;
@@ -98,7 +97,6 @@ function updateRadar(current_year, index_list) {
     index_list.forEach(function (index) {
         var data = [];
         var dataset = year_data[index]["AF"][0];
-        console.log(dataset);
         var axes = ["acousticness", "danceability", "energy", "liveness", "valence"];
         axes.forEach(function (add) {
             var radar_obj = {};
@@ -106,11 +104,8 @@ function updateRadar(current_year, index_list) {
             radar_obj["value"] = dataset[add];
             data.push(radar_obj);
         });
-        console.log(data);
         datas.push(data);
     });
-
-    console.log(datas);
 
     RadarChart("#radar", datas, radarChartOptions);
 }

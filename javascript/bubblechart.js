@@ -1,4 +1,5 @@
 var current_year = 2018;
+var alll_data = 0;
 
 function drawBubbleChart() {
 
@@ -9,6 +10,7 @@ function drawBubbleChart() {
 
     // Load data
     d3v5.json("json/hotstuffwgenres.json").then(function(all_data) {
+        alll_data = all_data;
         var correct_data = select_data(all_data, current_year);
         createBubbles(correct_data);
 
@@ -147,7 +149,8 @@ function drawBubbleChart() {
                     .attr("font-weight", "bold")
                     .attr("id", "bubble-title")
                     .text("Selected " + title + " by " + artist);
-                click_circle(dataset, title, artist);
+                var new_data = select_data(alll_data, current_year);
+                click_circle(new_data, title, artist);
             });
 
         document.getElementById("checkRap").addEventListener("click", select_genre);
@@ -240,8 +243,9 @@ function drawBubbleChart() {
                     artist = stripped;
                     dataset[i].Artist = stripped;
                 }
-                index_list.push(i);
+            index_list.push(i);
             }
+
         });
         updateLines(current_year, artist);
         updateRadar(current_year, index_list)
@@ -252,7 +256,6 @@ function drawBubbleChart() {
         // Bind function to onclick event for checkbox
         document.getElementById('checkRap').onclick = function() {
             // access properties using this keyword
-            console.log("Checkbox function fires: " + this.checked);
             if ( this.checked ) {
                 // Returns true if checked
                 svg.selectAll("#rap").style("opacity", "1")
