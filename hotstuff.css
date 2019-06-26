@@ -319,8 +319,8 @@ ul ul a {
 
 /*Legenda color checkbox background and border checked*/
 #checkRap:checked + .checkbox__label:before {
-    background-color: rgb(178, 178, 255)!important;
-    border-color: rgb(178, 178, 255)!important;
+    background-color: #89023E !important;
+    border-color: #89023E !important;
 }
 
 /*Checkmark itself color*/
@@ -330,7 +330,55 @@ ul ul a {
 
 /*Border color*/
 #rapLabel:before {
-    border-color: rgb(178, 178, 255)!important;
+    border-color: #89023E!important;
+}
+
+/*Legenda color checkbox background and border checked*/
+#checkPop:checked + .checkbox__label:before {
+    background-color: #CC7178 !important;
+    border-color: #CC7178 !important;
+}
+
+/*Checkmark itself color*/
+#checkPop:checked + .checkbox__label:after {
+    border-color: #fff;
+}
+
+/*Border color*/
+#popLabel:before {
+    border-color: #CC7178!important;
+}
+
+/*Legenda color checkbox background and border checked*/
+#checkRock:checked + .checkbox__label:before {
+    background-color: #5B5B5B !important;
+    border-color: #5B5B5B !important;
+}
+
+/*Checkmark itself color*/
+#checkRock:checked + .checkbox__label:after {
+    border-color: #fff;
+}
+
+/*Border color*/
+#rockLabel:before {
+    border-color: #5B5B5B!important;
+}
+
+/*Legenda color checkbox background and border checked*/
+#checkOther:checked + .checkbox__label:before {
+    background-color: #E8C6C7 !important;
+    border-color: #E8C6C7 !important;
+}
+
+/*Checkmark itself color*/
+#checkOther:checked + .checkbox__label:after {
+    border-color: #fff;
+}
+
+/*Border color*/
+#otherLabel:before {
+    border-color: #E8C6C7!important;
 }
 
 /*On mobile only appear if clicked on*/
