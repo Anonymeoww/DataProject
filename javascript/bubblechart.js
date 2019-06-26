@@ -136,13 +136,13 @@ function drawBubbleChart() {
             })
             .style("fill", function (color) {
                 if (rap.test(color["Genres"])) {
-                    return "#BEA8A7"
-                } else if (rock.test(color["Genres"])) {
-                    return "#b2b2ff"
-                } else if (pop.test(color["Genres"])) {
                     return "#89023E"
+                } else if (rock.test(color["Genres"])) {
+                    return "#5B5B5B"
+                } else if (pop.test(color["Genres"])) {
+                    return "#CC7178"
                 } else {
-                    return "#000000"
+                    return "#E8C6C7"
                 }
             })
             .on('click', function (d) {
@@ -197,13 +197,13 @@ function drawBubbleChart() {
                 })
                 .style("fill", function (color) {
                     if (rap.test(color["Genres"])) {
-                        return "#ffffff"
-                    } else if (rock.test(color["Genres"])) {
-                        return "#b2b2ff"
-                    } else if (pop.test(color["Genres"])) {
                         return "#89023E"
+                    } else if (rock.test(color["Genres"])) {
+                        return "#5B5B5B"
+                    } else if (pop.test(color["Genres"])) {
+                        return "#CC7178"
                     } else {
-                        return "#000000"
+                        return "#E8C6C7"
                     }
                 })
                 .each("end", function () {  // End animation
