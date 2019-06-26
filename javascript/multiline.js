@@ -6,8 +6,8 @@ function drawMultiLine(current_year) {
 
     // Load data
     d3v5.json("json/positions.json").then(function (dataset) {
-        this.full_data = dataset;
-        this.first_of_year = dataset[current_year][Object.keys(dataset[current_year])[0]];
+        full_data = dataset;
+        first_of_year = dataset[current_year][Object.keys(dataset[current_year])[0]];
         createLines(first_of_year);
     });
 
@@ -174,16 +174,20 @@ function updateLines(current_year, artist) {
     svgL.selectAll("*").remove();
 
     var dataUpdateLines = 0;
+    var artist = artist;
 
     if (artist === "first") {
-        dataUpdateLines = this.full_data[current_year][Object.keys(this.full_data[current_year])[0]]
+        dataUpdateLines = full_data[current_year][Object.keys(full_data[current_year])[0]]
     }
     else {
-        this.full_data.forEach(function (lookup, i) {
-            if (artist in this.full_data[current_year][i]) {
-                dataUpdateLines = this.full_data[current_year][this.full_data[current_year][i]];
-            }
-        });
+        // full_data.forEach(function (lookup, i) {
+        //     if (artist in full_data[current_year][i]) {
+        //         dataUpdateLines = full_data[current_year][full_data[current_year][i]];
+        //     }
+        // });
+        console.log(artist);
+        dataUpdateLines = full_data[current_year][artist];
+        console.log(dataUpdateLines)
     }
 
     var width = 500;

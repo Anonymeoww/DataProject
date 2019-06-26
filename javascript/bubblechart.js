@@ -148,7 +148,7 @@ function drawBubbleChart() {
             .on('click', function (d) {
                 var title = d["Title"];
                 var artist = d["Artist"];
-                click_circle(dataset, artist);
+                click_circle(dataset, title, artist);
             });
 
         document.getElementById("checkRap").addEventListener("click", select_genre);
@@ -230,27 +230,26 @@ function drawBubbleChart() {
     }
 
 
-    function click_circle(dataset, title){
+    function click_circle(dataset, title, artist){
         console.log(title);
+        console.log(artist);
 
-        var artist = "";
-        for (var i = 0; i < dataset.length; i++) {
-
-            if (dataset[i]["Title"] == title){
-                artist = dataset[i]["Artist"];
-                console.log(dataset[i]["Artist"])
-                console.log(dataset[i]["Genres"])
-            }
-        }
+        // var artist = "";
+        // for (var i = 0; i < dataset.length; i++) {
+        //     if (dataset[i]["Title"] === title){
+        //         artist = dataset[i]["Artist"];
+        //     }
+        // }
         var index_list = [];
         dataset.forEach(function (search, i){
-            if (dataset[i]["Artist"] == artist){
+            if (dataset[i]["Artist"] === artist){
                 index_list.push(i)
             }
         });
-        //updateRadar(current_year, index_list);
+
         updateLines(current_year, artist)
     }
+
     //
     // function click_circle(dataset, artist){
     //
