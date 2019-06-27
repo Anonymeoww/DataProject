@@ -1,3 +1,7 @@
+// Name: Dilisha C. Jethoe
+// Student number: 12523186
+// Functions for Radar Chart
+
 var current_year = 2018;
 var radar_data = 0;
 

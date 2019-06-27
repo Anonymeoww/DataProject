@@ -1,3 +1,7 @@
+// Name: Dilisha C. Jethoe
+// Student number: 12523186
+// Functions for Bubble Chart
+
 var current_year = 2018;
 var alll_data = 0;
 

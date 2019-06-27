@@ -1,3 +1,7 @@
+// Name: Dilisha C. Jethoe
+// Student number: 12523186
+// Functions for Multiline Chart
+
 var first_of_year = 0;
 var full_data = 0;
 var current_year = 2018;
