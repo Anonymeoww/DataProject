@@ -7,7 +7,7 @@ You can inspect the [data](https://data.world/kcmillersean/billboard-hot-100-195
 It shows that more and more popular music is focused on high energy levels and increasing danceability. This corresponds with the increase of rap and dance music. Click [here](https://anonymeoww.github.io/DataProject/) to visit the page.
 
 ## Demo
-![Image cannot be displayed](assets/demo1_1.PNG)
+![Image cannot be displayed](assets/demo3.PNG)
 <br><br>
 ![Image cannot be displayed](assets/demo2.PNG)
 
