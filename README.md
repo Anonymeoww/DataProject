@@ -4,7 +4,7 @@
 
 The tool analyzes data from the Billboard Hot 100 through the years, in combination with Spotify's audio features.
 You can inspect the [data](https://data.world/kcmillersean/billboard-hot-100-1958-2017) on micro level by looking at the songs themselves. At the same time, you will be able to get a macro perspective on this analysis by looking at the trends over time, surpassing the boundaries of just one era by looking at the music industry history as a whole.
-It shows that more and more popular music is focused on high energy levels and increasing danceability. This corresponds with the increase of rap and dance music. Click [here](https://anonymeoww.github.io/DataProject/) to visit the page.
+It shows that more and more popular music is focused on high energy levels and increasing danceability. This corresponds with the increase of rap and dance music. Click [here](https://anonymeoww.github.io/DataProject/) to visit the page, or click [here](https://youtu.be/3acUWxB6X_c) to watch my video.
 
 ## Demo
 ![Image cannot be displayed](assets/demo3.PNG)
