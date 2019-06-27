@@ -83,9 +83,10 @@ function drawMultiLine(current_year) {
                     .attr("class", "title-text")
                     .style("fill", color(i))
                     .text(d.name)
+                    .style("font-size", "20px")
                     .attr("text-anchor", "middle")
                     .attr("x", (width - margin) / 2)
-                    .attr("y", 5);
+                    .attr("y", -15);
             })
             .on("mouseout", function (d) {
                 svg.select(".title-text").remove();
@@ -203,7 +204,7 @@ function updateLines(current_year, artist) {
 
     var yScale = d3v5.scaleLinear()
         .domain([100, 0])
-        .range([height - margin, 0]);
+        .range([0, height - margin]);
 
     var color = d3v5.scaleOrdinal(d3v5.schemeCategory10);
 

@@ -16,7 +16,7 @@ function drawRadarChart() {
         var width = 550 - margin.left - margin.right;
         var height = 400 - margin.top - margin.bottom;
 
-        var color = d3v5.scaleOrdinal().range(["#c51b8a", "#CC333F", "#00A0B0"]);
+        var color = d3v5.scaleOrdinal().range(["#89023E", "#CC7178", "#E8C6C7"]);
 
         d3v5.select(".radar").append("svg")
             .attr("id", "radar")
@@ -74,7 +74,7 @@ function updateRadar(current_year, index_list) {
     var width = 550 - margin.left - margin.right;
     var height = 400 - margin.top - margin.bottom;
 
-    var color = d3v5.scaleOrdinal().range(["#c51b8a", "#CC333F", "#00A0B0"]);
+    var color = d3v5.scaleOrdinal().range(["#89023E", "#CC7178", "#E8C6C7"]);
 
     d3v5.select(".radar").append("svg")
         .attr("id", "radar")

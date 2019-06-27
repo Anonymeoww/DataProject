@@ -148,7 +148,7 @@ function drawBubbleChart() {
                     .attr("text-anchor", "middle")
                     .attr("font-weight", "bold")
                     .attr("id", "bubble-title")
-                    .text("Selected " + title + " by " + artist);
+                    .text("Selected song: " + title + " by " + artist);
                 var new_data = select_data(alll_data, current_year);
                 click_circle(new_data, title, artist);
             });
