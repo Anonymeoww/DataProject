@@ -1,5 +1,18 @@
 ## Process Book
 
+### Week 4 - Day 3 (June 26)
+Today I finished the scaling of my website. It is now fully functionable on all formats, including mobile devices. I used ViewBox and AspectRatio attributes instead of width and height, but how it really works is still a bit confusing.
+I also changed some colors in the radar chart and changed the domain on the multiline graph. I first changed the axes, so that the highest ranking songs showed an actual peak. But I didn't have enough time to change the design and I like it better with normal axes now. I started working on my new README and tomorrow I will record the video. 
+
+### Week 4 - Day 2 (June 25)
+I found a really big bug where the line chart could not update if the Artist in the JSON file was one that had the word 'Featuring' in it. This set me back quite a bit and took hours to fix.  Happy it worked out in the end. I took a lot of time today for styling the website. I am really happy with how it turned out.
+
+### Week 5 - Day 1 (June 24)
+It took some time, but I have the radar chart show different songs now. It turns out I just needed to create an array of the different song objects.
+
+### Week 4 - Day 5 (June 21)
+The multiline graph is now linked to the bubble chart! I am not a big fan of this design, but I hope I still have time to change it later.
+
 ### Week 4 - Day 4 (June 20)
 The multiline graph works now, with static data. I don't understand why the whole graph seems to have little opacity,
 but I'm first focusing on making sure it is linked with the bubble chart. New things on the planning include changing the
